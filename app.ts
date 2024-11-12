@@ -110,13 +110,10 @@ async function insertCategory(category: string): Promise<number> {
                 return;
             }
 
-            // Check if the results are valid and not empty
             if (results && Array.isArray(results) && results.length > 0) {
-                // Category already exists, return its id
                 const categoryId = results[0].id;
                 resolve(categoryId);
             } else {
-                // Insert the new category if it doesn't exist
                 const insertQuery = `INSERT INTO categories (category_name) VALUES (?)`;
 
                 connection.query(insertQuery, [category], (insertError, insertResults) => {
