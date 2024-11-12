@@ -1,0 +1,17 @@
+{
+  "name": "ps99-rap",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "tsc app.ts && node app.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "fs": "0.0.1-security",
+    "mysql2": "^3.11.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "typescript": "^4.9.5"
+  }
+}
