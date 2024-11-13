@@ -31,9 +31,24 @@ export async function insertItem(item: Item, categoryId: number, connection: Con
                 ], (updateError) => {
                     if (updateError) {
                         reject(updateError);
-                    } else {
-                        resolve();
+                        return;
                     }
+
+                    const insertHistoryQuery = `
+                        INSERT INTO history (item_id, previous_rap, updated_at)
+                        VALUES (?, ?, ?)`;
+
+                    connection.query(insertHistoryQuery, [
+                        existingItem.id,
+                        existingItem.rap,
+                        item.lastModified
+                    ], (insertHistoryError) => {
+                        if (insertHistoryError) {
+                            reject(insertHistoryError);
+                        } else {
+                            resolve();
+                        }
+                    });
                 });
             } else {
                 const insertQuery = `
