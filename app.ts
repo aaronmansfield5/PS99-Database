@@ -21,6 +21,7 @@ interface ConfigData {
     id: string;
     pt?: number;
     sh?: boolean;
+    titanic?: boolean;
     huge?: boolean;
     exclusiveLevel?: number;
     name?: string;
@@ -36,6 +37,7 @@ interface Item {
     name: string;
     rap: number;
     previousRap?: number;
+    titanic?: boolean;
     huge?: boolean;
     exclusive?: boolean;
     amountExists?: number;
@@ -167,8 +169,8 @@ async function insertItem(item: Item, categoryId: number): Promise<void> {
                 });
             } else {
                 const insertQuery = `
-                    INSERT INTO items (name, rap, previous_rap, last_modified, category_id, huge, exclusive, amount_exists)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+                    INSERT INTO items (name, rap, previous_rap, last_modified, category_id, titanic, huge, exclusive, amount_exists)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
                 connection.query(insertQuery, [
                     item.name,
@@ -176,6 +178,7 @@ async function insertItem(item: Item, categoryId: number): Promise<void> {
                     item.rap,
                     item.lastModified,
                     categoryId,
+                    item.titanic ? 1 : 0,
                     item.huge ? 1 : 0,
                     item.exclusive ? 1 : 0,
                     item.amountExists ?? null
@@ -243,6 +246,7 @@ async function main() {
                 if (collectionData) {
                     const petData = collectionData.find((pet) => pet.configData.name === entry.configData.id);
 
+                    item.titanic = petData?.configData.titanic ?? false;
                     item.huge = petData?.configData.huge ?? false;
                     item.exclusive = petData?.configData.exclusiveLevel !== undefined ? true : false;
 
