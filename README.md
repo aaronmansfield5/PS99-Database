@@ -51,6 +51,7 @@ CREATE TABLE items (
     previous_rap INT,
     last_modified INT,
     category_id INT,
+    titanic BOOLEAN,
     huge BOOLEAN,
     exclusive BOOLEAN,
     amount_exists INT,
