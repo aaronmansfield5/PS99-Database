@@ -56,7 +56,7 @@ async function syncdb() {
 
 function main() {
     syncdb();
-    setInterval(syncdb, 15 * 60 * 1000); // 15 Minutes
+    setInterval(syncdb, 30 * 60 * 1000); // 30 Minutes
 }
 
 main();
