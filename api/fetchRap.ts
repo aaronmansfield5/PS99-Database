@@ -1,12 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
-import { HEADERS, BASE_URL } from '../constants/index.ts';
+import { Entry } from '../types';
+import { BASE_URL, HEADERS } from '../config';
 
-export async function fetchCollections(): Promise<string[]> {
+export async function fetchRap(): Promise<Entry[]> {
     try {
-        const response: AxiosResponse<{ data: string[] }> = await axios.get(`${BASE_URL}collections`, { headers: HEADERS });
+        const response: AxiosResponse<{ data: Entry[] }> = await axios.get(`${BASE_URL}rap`, { headers: HEADERS });
         if (response.status !== 200) throw new Error(response.statusText);
         return response.data.data;
     } catch (error) {
-        throw new Error(`Failed to fetch collections: ${(error as Error).message}`);
+        throw new Error(`Failed to fetch rap: ${(error as Error).message}`);
     }
 }

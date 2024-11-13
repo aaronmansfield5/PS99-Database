@@ -1,3 +1,4 @@
+import { ResultSetHeader } from 'mysql2';
 import { connection } from '../config/database';
 
 export async function insertCategory(category: string): Promise<number> {

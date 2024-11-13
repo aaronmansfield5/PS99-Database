@@ -28,7 +28,7 @@ async function main() {
 
             try {
                 const categoryId = await insertCategory(category);
-                await insertItem(item, categoryId);
+                await insertItem(item, categoryId, connection);
                 items[category].push(item);
             } catch (error) {
                 console.error(`Error inserting item: ${(error as Error).message}`);

@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { HEADERS, BASE_URL } from '../constants/index.ts';
+import { HEADERS, BASE_URL } from '../config';
 import { Entry } from '../types';
 
 export async function fetchDataFromCollection(collection: string): Promise<Entry[]> {
