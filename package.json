@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "start": "tsc app.ts && node app.js"
+    "start": "tsc main.ts && node main.js"
   },
   "dependencies": {
     "axios": "^0.27.2",
