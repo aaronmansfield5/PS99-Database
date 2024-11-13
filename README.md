@@ -58,14 +58,14 @@ CREATE TABLE items (
     FOREIGN KEY (category_id) REFERENCES categories(id)
 );
 
-CREATE TABLE `history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_id` int(11) NOT NULL,
-  `previous_rap` int(11) NOT NULL,
-  `updated_at` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `item_id` (`item_id`),
-  CONSTRAINT `history_ibfk_1` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`)
+CREATE TABLE history (
+  id int(11) NOT NULL AUTO_INCREMENT,
+  item_id int(11) NOT NULL,
+  previous_rap int(11) NOT NULL,
+  updated_at int(11) DEFAULT NULL,
+  PRIMARY KEY (id),
+  KEY item_id (item_id),
+  FOREIGN KEY (item_id) REFERENCES items(id)
 )
 ```
 
