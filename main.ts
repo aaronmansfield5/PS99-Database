@@ -26,6 +26,17 @@ async function main() {
             const name = constructItemName(entry);
             const item: Item = { name, rap: entry.value, lastModified: Math.floor(Date.now() / 1000) };
 
+            const amountData = amountsData.find(amount => 
+                amount.category === category &&
+                amount.configData.id === entry.configData.id &&
+                amount.configData.pt === entry.configData.pt &&
+                amount.configData.sh === entry.configData.sh
+            );
+
+            if (amountData) {
+                item.amountExists = amountData.value;
+            }
+
             try {
                 const categoryId = await insertCategory(category);
                 await insertItem(item, categoryId, connection);
