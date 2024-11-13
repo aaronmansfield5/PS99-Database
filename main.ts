@@ -4,7 +4,7 @@ import { insertCategory, insertItem } from './db';
 import { constructItemName } from './utils/constructItemName';
 import { Items, Item, Entry } from './types';
 
-async function main() {
+async function syncdb() {
     const items: Items = {};
 
     try {
@@ -46,12 +46,17 @@ async function main() {
             }
         }
 
-        console.log("Data has been saved to the database.");
+        console.log(`Database sync completed at ${new Date().toLocaleString()}`);
     } catch (error) {
         console.error((error as Error).message);
     } finally {
         connection.end();
     }
+}
+
+function main() {
+    syncdb();
+    setInterval(syncdb, 15 * 60 * 1000); // 15 Minutes
 }
 
 main();
